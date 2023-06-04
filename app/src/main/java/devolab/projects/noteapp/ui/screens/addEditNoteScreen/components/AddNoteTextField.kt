@@ -1,4 +1,4 @@
-package devolab.projects.noteapp.ui.screens.addnotesscreen.components
+package devolab.projects.noteapp.ui.screens.addEditNoteScreen.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -35,7 +35,7 @@ fun CustomTextField(
                 .fillMaxWidth()
                 .onFocusChanged {
                     onFocusChanged(it)
-                }
+                },
         )
         if(isHintVisible) {
             Text(text = hint, style = textStyle, color = Color.DarkGray)

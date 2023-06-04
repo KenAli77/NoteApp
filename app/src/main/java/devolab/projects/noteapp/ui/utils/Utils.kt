@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.debugInspectorInfo
 import androidx.compose.ui.unit.Dp
+import devolab.projects.noteapp.domain.model.Note
 import devolab.projects.noteapp.ui.theme.LightPurple
 import devolab.projects.noteapp.ui.theme.PastelBlue
 import devolab.projects.noteapp.ui.theme.PastelGreen
@@ -40,6 +41,44 @@ fun getRandomColor(): Color {
     return colors.random()
 }
 
+val sampleNotes:List<Note> = listOf(
+    Note(
+        id = 0,
+        title = "I love pizza",
+        content = "Pizza is the best thing, i wish i could have it every day!!",
+        timeStamp = 1682937000000,
+        tag = listOf("yummy","food")
+    ),
+    Note(
+        id = 1,
+        title = "how cool is that",
+        content = LOREM_IPSUM,
+        timeStamp = 1643501904000L,
+        tag = listOf("cool")
+    ),
+    Note(
+        id = 2,
+        title = "just another day",
+        content = LOREM_IPSUM,
+        timeStamp = 1643588304000L,
+        tag = listOf("boring")
+    ),
+    Note(
+        id = 3,
+        title = "the best time ever!",
+        content = LOREM_IPSUM,
+        timeStamp = 1643069904000L,
+        tag = listOf("happy")
+    ),
+    Note(
+        id = 4,
+        title = "i need a kitten in my life",
+        content = LOREM_IPSUM,
+        timeStamp = 1643156304000L,
+        tag = listOf("cats")
+    )
+
+)
 
 
 

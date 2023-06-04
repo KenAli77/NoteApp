@@ -2,6 +2,7 @@ package devolab.projects.noteapp.data.local
 
 import devolab.projects.noteapp.domain.model.Note
 import devolab.projects.noteapp.domain.repository.NotesRepository
+import devolab.projects.noteapp.ui.utils.sampleNotes
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -19,6 +20,10 @@ class NotesRepositoryImpl @Inject constructor(private val dao: NotesDao) : Notes
             instance ?: synchronized(this) {
                 instance ?: NotesRepositoryImpl(notesDao).also { instance = it }
             }
+    }
+
+    init {
+
     }
 
     override fun getNotes(): Flow<List<Note>> {

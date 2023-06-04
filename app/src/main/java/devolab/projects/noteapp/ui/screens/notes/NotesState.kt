@@ -4,7 +4,10 @@ import devolab.projects.noteapp.domain.model.Note
 
 data class NotesState(
     val notes: List<Note> = emptyList(),
-    val filters:List<String> = emptyList(),
-    val tags:List<String> = emptyList(),
+    val filters:ArrayList<String> = ArrayList<String>(),
+    val filteredNotes:List<Note> = notes.filter { it.tag?.containsAll(filters) ?: true },
+    var tags:List<String> = ArrayList<String>(),
+    val isDialogShowing:Boolean = false,
+    val noteToDelete:Note? = null,
     val error:String? = null
 )

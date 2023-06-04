@@ -1,6 +1,8 @@
 package devolab.projects.noteapp.ui.screens.notes.components
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -32,7 +34,12 @@ import devolab.projects.noteapp.ui.utils.getRandomColor
 import devolab.projects.noteapp.ui.utils.getReadableDateTime
 
 @Composable
-fun NotesScrollView(notes: Map<String, List<Note>>, modifier: Modifier) {
+fun NotesScrollView(
+    notes: Map<String, List<Note>>,
+    modifier: Modifier,
+    onClick: (Note) -> Unit,
+    onLongClick: (Note) -> Unit
+) {
     val lazyListState = rememberLazyListState()
 
     LazyColumn(
@@ -72,7 +79,7 @@ fun NotesScrollView(notes: Map<String, List<Note>>, modifier: Modifier) {
 
 
             items(notes) { note ->
-                NoteItem(note = note)
+                NoteItem(note = note, onLongClick = onLongClick, onClick = onClick)
             }
 
         }
@@ -81,13 +88,15 @@ fun NotesScrollView(notes: Map<String, List<Note>>, modifier: Modifier) {
 
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun NoteItem(note: Note) {
+fun NoteItem(note: Note, onClick: (Note) -> Unit, onLongClick: (Note) -> Unit) {
 
     ConstraintLayout(
         modifier = Modifier
             .padding(start = 10.dp, bottom = 10.dp)
             .fillMaxWidth()
+
     ) {
         val (time, sidebar, noteView) = createRefs()
 
@@ -125,7 +134,11 @@ fun NoteItem(note: Note) {
                 width = Dimension.fillToConstraints
             }
             .clip(RoundedCornerShape(30.dp))
-            .background(Color(note.color)),
+            .background(Color(note.color))
+            .combinedClickable(
+                onClick = { onClick(note) },
+                onLongClick = { onLongClick(note) }
+            ),
             contentAlignment = Alignment.Center
         ) {
 
